@@ -20,6 +20,6 @@ def test_only_owner_can_withdraw():
     pytest.skip("only for local testing")
   account = get_account()
   fund_me = deploy_fund_me()
-  bad_actor = accounts.add()
-  with pytest.raises(exceptions.VirtualMachineError):
+  bad_actor = accounts.add() # Returns a random blanck account
+  with pytest.raises(exceptions.VirtualMachineError): # Tests "Only owner" modifier
     fund_me.withdraw({"from": bad_actor})
